@@ -112,7 +112,7 @@
 //     </div>
 //   );
 // }
-'use client';
+"use client";
 import { useState } from "react";
 
 export default function HtmlConverter() {
@@ -148,46 +148,62 @@ export default function HtmlConverter() {
   }
 
   return (
-    <div style={{ maxWidth: 800, margin: "2rem auto", fontFamily: "sans-serif" }}>
-      <h1>Raw HTML to Org Format Converter</h1>
-      <textarea
-        placeholder="Paste raw HTML here..."
-        value={rawHtml}
-        onChange={(e) => setRawHtml(e.target.value)}
-        rows={10}
-        style={{ width: "100%", fontFamily: "monospace", fontSize: 14, color: "black" }}
-      />
-      <button
-        onClick={handleConvert}
-        disabled={loading || rawHtml.trim() === ""}
-        style={{ marginTop: 10, padding: "8px 16px", fontSize: 16 }}
-      >
-        {loading ? "Converting..." : "Convert"}
-      </button>
-
-      {error && (
-        <pre style={{ marginTop: 20, color: "red", whiteSpace: "pre-wrap" }}>
-          Error: {error}
-        </pre>
-      )}
-
-      {result && (
-        <>
-          <h2 style={{ marginTop: 20 }}>Converted JSON Layout</h2>
-          <pre
-            style={{
-              backgroundColor: "#f0f0f0",
-              padding: 10,
-              color: 'black',
-              borderRadius: 6,
-              overflowX: "auto",
-              whiteSpace: "pre-wrap",
-            }}
-          >
-            {result}
+    <>
+    <div
+      className="flex gap-20 items-center"
+      style={{  margin: "1rem", fontFamily: "sans-serif" }}
+    >
+      <div style={{ width: "80%" }}>
+        <h1 className="text-purple-700 font-mono font-semibold">Raw HTML to Org Format Converter</h1>
+        <textarea
+          className="w-full p-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 bg-white text-gray-800 font-mono text-sm shadow-sm placeholder-gray-400"
+          placeholder="Paste raw HTML here..."
+          value={rawHtml}
+          onChange={(e) => setRawHtml(e.target.value)}
+          rows={10}
+          style={{
+            width: "100%",
+            fontFamily: "monospace",
+            fontSize: 14,
+            color: "black",
+          }}
+        />
+      </div>
+      <div>
+        <button
+          className="px-6 py-2 rounded-2xl bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-semibold shadow-md hover:from-indigo-600 hover:to-purple-600 transition duration-300 ease-in-out"
+          onClick={handleConvert}
+          disabled={loading || rawHtml.trim() === ""}
+          style={{ marginTop: 10, padding: "8px 16px", fontSize: 16 }}
+        >
+          {loading ? "Converting..." : "Convert"}
+        </button>
+      </div>
+    
+    </div>  <div>
+        {error && (
+          <pre style={{ marginTop: 20, color: "red", whiteSpace: "pre-wrap" }}>
+            Error: {error}
           </pre>
-        </>
-      )}
-    </div>
+        )}
+
+        {result && (
+          <>
+            <h2 className="text-purple-700 font-mono font-semibold" style={{ marginTop: 20 }}>Converted JSON Layout</h2>
+            <pre
+              style={{
+                backgroundColor: "#f0f0f0",
+                padding: 10,
+                color: "black",
+                borderRadius: 6,
+                overflowX: "auto",
+                whiteSpace: "pre-wrap",
+              }}
+            >
+              {result}
+            </pre>
+          </>
+        )}
+      </div></>
   );
 }
